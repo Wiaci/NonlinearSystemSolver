@@ -2,6 +2,7 @@ package nonlinearEquation.solvers;
 
 import nonlinearEquation.Borders;
 import nonlinearEquation.Problem;
+import nonlinearEquation.Root;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -24,5 +25,9 @@ public abstract class Solver {
             previousX = x;
         }
         return rootIntervals;
+    }
+
+    public List<Root> solve() throws Exception {
+        return new ArrayList<>();
     }
 }

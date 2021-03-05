@@ -17,6 +17,7 @@ public class TangentsMethodSolver extends Solver {
         return problem.calculateIn(x) * problem.calculateSecondDerivativeIn(x) > 0;
     }
 
+    @Override
     public List<Root> solve() throws Exception {
         List<Borders> rootIntervals = getRootIntervals();
         List<Root> roots = new ArrayList<>();
