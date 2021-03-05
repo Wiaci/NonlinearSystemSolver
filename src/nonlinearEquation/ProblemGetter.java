@@ -7,7 +7,7 @@ public class ProblemGetter {
     public static Problem getNonlinearEquation() {
         Scanner in = new Scanner(System.in);
 
-        System.out.println("Введите уравнение вида: f(x0) = 0");
+        System.out.println("Введите уравнение вида: f(x) = 0");
         String expression = getExpression(in);
 
         System.out.println("Введите границы поиска в формате: левая_граница правая_граница");
