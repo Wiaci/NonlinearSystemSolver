@@ -1,5 +1,7 @@
 package nonlinearEquation;
 
+import expressionParser.estimator.ExpressionEstimator;
+
 import java.util.Scanner;
 
 public class ProblemGetter {
@@ -9,6 +11,11 @@ public class ProblemGetter {
 
         System.out.println("Введите уравнение вида: f(x) = 0");
         String expression = getExpression(in);
+        try {
+            new ExpressionEstimator().compile(expression);
+        } catch (Exception e) {
+            abort("Неверный фомат ввода уравнения");
+        }
 
         System.out.println("Введите границы поиска в формате: левая_граница правая_граница");
         Borders borders = getBorders(in);
