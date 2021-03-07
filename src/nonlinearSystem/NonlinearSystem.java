@@ -16,4 +16,32 @@ public class NonlinearSystem {
         this.borders = borders;
         this.accuracy = accuracy;
     }
+
+    public List<Equation> getEquations() {
+        return equations;
+    }
+
+    public Equation getEquation(int i) {
+        return equations.get(i);
+    }
+
+    public void setEquations(List<Equation> equations) {
+        this.equations = equations;
+    }
+
+    public List<Borders> getBorders() {
+        return borders;
+    }
+
+    public void setBorders(List<Borders> borders) {
+        this.borders = borders;
+    }
+
+    public double getAccuracy() {
+        return accuracy;
+    }
+
+    public void setAccuracy(double accuracy) {
+        this.accuracy = accuracy;
+    }
 }
