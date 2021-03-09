@@ -4,7 +4,7 @@ import java.security.InvalidParameterException;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Matrix {
+public class Matrix implements Cloneable {
 
     private final List<List<Double>> values;
     private final int rows, cols;
@@ -131,6 +131,16 @@ public class Matrix {
 
     public int getNumOfRows() {
         return rows;
+    }
+
+    @Override
+    public Object clone() {
+        try {
+            return super.clone();
+        } catch (CloneNotSupportedException e) {
+            e.printStackTrace();
+        }
+        return this;
     }
 
     @Override

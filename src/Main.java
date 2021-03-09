@@ -1,12 +1,6 @@
-import nonlinearEquation.Problem;
-import nonlinearEquation.ProblemGetter;
 import nonlinearEquation.Root;
-import nonlinearEquation.solvers.SimpleIterationMethodSolver;
-import nonlinearEquation.solvers.Solver;
-import nonlinearEquation.solvers.TangentsMethodSolver;
 import nonlinearSystem.*;
 
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
@@ -47,7 +41,13 @@ public class Main {
         System.out.println(w);*/
         NonlinearSystem system = NonlinearSystemGetter.getSystem();
         NonlinearSystemSolver solver = new NonlinearSystemSolver(system);
-        solver.solve();
+        try {
+            double[] solution = solver.solve();
+            Arrays.stream(solution)
+                    .forEach(System.out::println);
+        } catch (InvalidInitialApproximationException e) {
+            System.out.println("Неверно указано начальное приближение");
+        }
     }
 
     public static void printRoots(List<Root> roots) {

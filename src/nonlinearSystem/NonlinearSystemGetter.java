@@ -16,12 +16,13 @@ public class NonlinearSystemGetter {
         System.out.println("Введите уравнения в формате: f(x0, x1, ..., xn)=0");
         List<Equation> equations = getEquations(numOfEquations, in);
 
-        List<Borders> borders = getBorders(numOfEquations, in);
+        System.out.println("Введите начальное приближение в формате: x0 x1 x2 ... xn");
+        double[] initApprox = getInitialApproximation(numOfEquations, in);
 
         System.out.println("Введите точность вычисления корней");
         double accuracy = getAccuracy(in);
 
-        return new NonlinearSystem(equations, borders, accuracy);
+        return new NonlinearSystem(equations, initApprox, accuracy);
     }
 
     private static int getNumOfEquations(Scanner in) {
@@ -47,20 +48,17 @@ public class NonlinearSystemGetter {
         return equations;
     }
 
-    private static List<Borders> getBorders(int numOfEquations, Scanner in) {
-        List<Borders> borders = new ArrayList<>();
+    private static double[] getInitialApproximation(int numOfEquations, Scanner in) {
+        double[] initialApproximation = new double[numOfEquations];
+        String[] parts = in.nextLine().trim().split(" ");
+        if (parts.length == numOfEquations) {
+            for (int i = 0; i < numOfEquations; i++) {
+                if (isDouble(parts[i])) initialApproximation[i] = Double.parseDouble(parts[i]);
+                else abort("Неверный формат ввода!");
+            }
 
-        for (int i = 0; i < numOfEquations; i++) {
-            System.out.print("Границы для x" + i + ": ");
-            String[] isBorders = in.nextLine().trim().split(" ");
-            if (isBorders.length == 2) {
-                if (isDouble(isBorders[0]) && isDouble(isBorders[1])) {
-                    borders.add(new Borders(Double.parseDouble(isBorders[0]),
-                            Double.parseDouble(isBorders[1])));
-                } else abort("Неверный формат ввода!");
-            } else abort("Границ должно быть 2!");
-        }
-        return borders;
+        } else abort("Неверное количество значений!");
+        return initialApproximation;
     }
 
     private static double getAccuracy(Scanner in) {

@@ -8,13 +8,17 @@ import java.util.List;
 public class NonlinearSystem {
 
     private List<Equation> equations;
-    private List<Borders> borders;
+    private final double[] initialApproximation;
     private double accuracy;
 
-    public NonlinearSystem(List<Equation> equations, List<Borders> borders, double accuracy) {
+    public NonlinearSystem(List<Equation> equations, double[] initialApproximation, double accuracy) {
         this.equations = equations;
-        this.borders = borders;
+        this.initialApproximation = initialApproximation;
         this.accuracy = accuracy;
+    }
+
+    public double[] getInitialApproximation() {
+        return initialApproximation;
     }
 
     public List<Equation> getEquations() {
@@ -27,14 +31,6 @@ public class NonlinearSystem {
 
     public void setEquations(List<Equation> equations) {
         this.equations = equations;
-    }
-
-    public List<Borders> getBorders() {
-        return borders;
-    }
-
-    public void setBorders(List<Borders> borders) {
-        this.borders = borders;
     }
 
     public double getAccuracy() {
