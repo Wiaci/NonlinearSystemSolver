@@ -10,7 +10,7 @@ public class ProblemGetter {
         Scanner in = new Scanner(System.in);
 
         System.out.println("Введите уравнение вида: f(x) = 0");
-        String expression = getExpression(in);
+        String expression = getExpression(in).replaceAll("x", "x0");
         try {
             new ExpressionEstimator().compile(expression);
         } catch (Exception e) {

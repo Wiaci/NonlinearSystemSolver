@@ -18,16 +18,21 @@ public class Problem {
         estimator.compile(expression);
     }
 
-    public double calculateIn(double x) throws Exception {
-        double[] val = new double[] {x};
-        return estimator.calculate(val);
+    public double calculateIn(double x) {
+        try {
+            double[] val = new double[] {x};
+            return estimator.calculate(val);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return 0;
     }
 
-    public double calculateDerivativeIn(double x) throws Exception {
+    public double calculateDerivativeIn(double x) {
         return (calculateIn(x + DELTA) - calculateIn(x - DELTA)) / DELTA / 2;
     }
 
-    public double calculateSecondDerivativeIn(double x) throws Exception {
+    public double calculateSecondDerivativeIn(double x) {
         return (calculateIn(x + DELTA) - 2 * calculateIn(x)
                 + calculateIn(x - DELTA)) / (DELTA * DELTA);
     }
